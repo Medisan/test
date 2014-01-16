@@ -1,0 +1,61 @@
+<VirtualHost *:80>
+  ServerAdmin webmaster@localhost
+  ServerName <servername>
+  
+  DocumentRoot /var/www/
+
+  <Directory />
+    Options FollowSymLinks
+    AllowOverride All
+  </Directory>
+
+  <Directory /var/www/>
+    Options -Indexes FollowSymLinks MultiViews
+    AllowOverride None
+    Order allow,deny
+    allow from all
+  </Directory>
+
+  <Directory /var/www/rutorrent>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestDomain /var/www/rutorrent/ http://<servername>/rutorrent
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+    SetEnv R_ENV "/var/www/rutorrent"
+  </Directory>
+</VirtualHost>
+
+<VirtualHost *:443>
+  ServerAdmin webmaster@localhost
+  ServerName <servername>
+  NameVirtualHost *:443
+  SSLEngine on
+  SSLCertificateFile /etc/miscript/ssl/cert.pem
+  SSLCertificateKeyFile /etc/miscript/ssl/key.pem
+
+  DocumentRoot /var/www/
+
+  <Directory />
+    Options FollowSymLinks
+    AllowOverride All
+  </Directory>
+
+  <Directory /var/www/>
+    Options -Indexes FollowSymLinks MultiViews
+    AllowOverride None
+    Order allow,deny
+    allow from all
+  </Directory>
+  
+  <Directory /var/www/rutorrent>
+    AuthType Digest
+    AuthName "rutorrent"
+    AuthDigestDomain /var/www/rutorrent/ https://<servername>/rutorrent
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
+    SetEnv R_ENV "/var/www/rutorrent"
+  </Directory>
+</VirtualHost>

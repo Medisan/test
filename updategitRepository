@@ -1,0 +1,12 @@
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+                        
+cd /etc/miscript/
+sudo git stash
+sudo git pull
+sudo bash /etc/miscript/updateExecutables
+
+##################### LAST LINE ###########

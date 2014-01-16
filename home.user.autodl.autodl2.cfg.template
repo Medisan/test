@@ -1,0 +1,6 @@
+[options]
+gui-server-port = <PORT>
+gui-server-password = <PASSWORD>
+allowed = watchdir
+
+

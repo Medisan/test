@@ -1,0 +1,15 @@
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+#
+
+description "ncurses BitTorrent client based on LibTorrent"
+start on stopped rc RUNLEVEL=[2345]
+stop on runlevel [016]
+
+chdir <homedir>
+script
+su - -s /bin/bash <username> <homedir>/.tools/restart
+end script
+
+#do not remove or edit this line

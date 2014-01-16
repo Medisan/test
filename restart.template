@@ -1,0 +1,25 @@
+#####################
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+
+export HOME=<homedir>
+
+echo "Checking..."
+kill `screen -ls | grep tached | awk '{print $1}' | cut -d. -f 1` &> /dev/null
+sleep 1
+kill -9 `screen -ls | grep tached | awk '{print $1}' | cut -d. -f 1` &> /dev/null
+sleep 1
+kill -9 `ps aux | grep <username> | grep deluge | grep -v grep | awk '{print $2}' | cut -d. -f 1` &> /dev/null
+
+echo "Clear..."
+screen -wipe
+
+sleep 3
+echo "Start rTorrent..."
+screen -d -m -S rtorrent rtorrent
+
+sleep 3
+echo "Start IRSSI..."
+screen -d -m -S irssi irssi

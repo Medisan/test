@@ -1,0 +1,24 @@
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+#
+
+sudo chmod +x /etc/miscript/updateExecutables
+sudo chmod +x /etc/miscript/createSeedboxUser
+sudo chmod +x /etc/miscript/deleteSeedboxUser
+sudo chmod +x /etc/miscript/removeWebmin
+sudo chmod +x /etc/miscript/installWebmin
+sudo chmod +x /etc/miscript/downgradeRTorrent
+sudo chmod +x /etc/miscript/upgradeRTorrent
+sudo chmod +x /etc/miscript/updategitRepository
+sudo chmod +x /etc/miscript/createOpenSSLServiceCertificate
+sudo chmod +x /etc/miscript/createOpenSSLCACertificate
+sudo chmod +x /etc/miscript/upgradeSeedbox
+sudo chmod +x /etc/miscript/changeUserPassword
+sudo chmod +x /etc/miscript/installRTorrent
+sudo chmod +x /etc/miscript/installCurl
+
+
+##################### LAST LINE ###########

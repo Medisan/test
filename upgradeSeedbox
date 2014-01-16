@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+#
+
+if [ "$1" = "" ]; then
+  echo "usage: upgradeSeedbox <version>"
+  exit
+fi
+
+TSFSV=$1
+
+cd /etc/miscript/
+sudo git fetch --all
+sudo git stash
+sudo git checkout -b $TSFSV origin/$TSFSV
+sudo git pull
+
+sudo bash /etc/miscript/updateExecutables               

@@ -1,0 +1,28 @@
+# Disable file-based auth
+AuthBasicAuthoritative      Off
+AuthUserFile                /dev/null
+
+# Enable MySQL auth
+AuthMySQL                   On
+AuthType                    Basic
+AuthName                    "Unauthorized use prohibited"
+
+# Basic information - fill in your own details here
+Auth_MySQL_User             DB_USER
+Auth_MySQL_Password         DB_PASSWORD
+Auth_MySQL_Host             DB_HOST
+Auth_MySQL_DB               DB_NAME
+Auth_MySQL_CharacterSet     utf8
+
+# The table and fields to use
+Auth_MySQL_Password_Table   users
+Auth_MySQL_Username_Field   users.user_login
+Auth_MySQL_Password_Field   users.user_pass
+Auth_MySQL_Encryption_Types PHPass PHP_MD5
+
+# Any user found in the table can log in
+Require                     valid-user
+
+# Users can log in from anywhere
+Order                       allow,deny
+Allow                       from all
