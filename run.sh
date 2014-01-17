@@ -122,9 +122,9 @@ if [ "$RTORRENT1" != "0.9.3" ] && [ "$RTORRENT1" != "0.9.2" ] && [ "$RTORRENT1" 
   exit 1
 fi
 
-# Percona
 sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A
-echo "deb http://repo.percona.com/apt squeeze main" > /etc/apt/sources.list
+echo "" | tee -a /etc/apt/sources.list > /dev/null
+echo "deb http://repo.percona.com/apt squeeze main" | tee -a /etc/apt/sources.list > /dev/null
 
 apt-get --yes update
 apt-get --yes install whois sudo makepasswd git
