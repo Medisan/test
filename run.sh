@@ -124,7 +124,7 @@ fi
 
 # Percona
 sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A
-echo "deb http://repo.percona.com/apt squeeze main" >> /etc/apt/sources.list
+echo "deb http://repo.percona.com/apt squeeze main" > /etc/apt/sources.list
 
 apt-get --yes update
 apt-get --yes install whois sudo makepasswd git
