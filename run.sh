@@ -122,12 +122,13 @@ if [ "$RTORRENT1" != "0.9.3" ] && [ "$RTORRENT1" != "0.9.2" ] && [ "$RTORRENT1" 
   exit 1
 fi
 
+apt-get --yes install sudo
 sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A
 echo "" | tee -a /etc/apt/sources.list > /dev/null
 echo "deb http://repo.percona.com/apt squeeze main" | tee -a /etc/apt/sources.list > /dev/null
 
 apt-get --yes update
-apt-get --yes install whois sudo makepasswd git
+apt-get --yes install whois makepasswd git
 
 rm -f -r /etc/miscript
 git clone https://github.com/W1nst0n/test.git /etc/miscript
