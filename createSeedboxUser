@@ -176,7 +176,10 @@ fi
 quota=$(( $QUOTA1 * 1024 * 1024 ))
 filesLimit=$(( $QUOTA1 * 500 ))
 
+if [ ! -f /home/aquota.user ]; then
 sudo setquota $NEWUSER1 $quota $quota $filesLimit $filesLimit -a;
+fi
+
 
 # 3.4
 
