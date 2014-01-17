@@ -115,14 +115,14 @@ getString NO  "IP address or hostname of your box: " IPADDRESS1 $IPADDRESS1
 getString NO  "vsftp port (usually 21): " NEWFTPPORT1 21
 getString NO  "Install Webmin? " INSTALLWEBMIN1 YES
 getString NO  "Install Fail2ban? " INSTALLFAIL2BAN1 NO
-getString NO  "Wich RTorrent version would you like to install, '0.9.2' or '0.9.3'? " RTORRENT1 0.9.2
+getString NO  "Wich RTorrent version would you like to install, '0.9.2' or '0.9.3' or 'update'? " RTORRENT1 0.9.2
 
-if [ "$RTORRENT1" != "0.9.3" ] && [ "$RTORRENT1" != "0.9.2" ]; then
-  echo "$RTORRENT1 typed is not 0.9.3 or 0.9.2!"
+if [ "$RTORRENT1" != "0.9.3" ] && [ "$RTORRENT1" != "0.9.2" ] && [ "$RTORRENT1" != "update" ]; then
+  echo "$RTORRENT1 typed is not 0.9.3 or 0.9.2 or update!"
   exit 1
 fi
 
-# Percona)
+# Percona
 sudo apt-key adv --keyserver keys.gnupg.net --recv-keys 1C4CBDCDCD2EFD2A
 echo "deb http://repo.percona.com/apt squeeze main" >> /etc/apt/sources.list
 

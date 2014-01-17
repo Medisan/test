@@ -21,16 +21,35 @@ fi
 sudo killall rtorrent
 sudo kill -9 `sudo ps aux | grep rtorrent | grep -v grep | awk '{print $2}' | cut -d. -f 1` &> /dev/null
 
-cd /etc/miscript/source/libtorrent-$LIBTORRENT1
-sudo ./autogen.sh
-sudo ./configure --prefix=/usr
-sudo make -j2
-sudo make install
+if [ "$RTORRENT1" = "0.9.3" ] && [ "$RTORRENT1" = "0.9.2" ]; then
+  cd /etc/miscript/source/libtorrent-$LIBTORRENT1
+  sudo ./autogen.sh
+  sudo ./configure --prefix=/usr
+  sudo make -j2
+  sudo make install
 
-cd /etc/miscript/source/rtorrent-$RTORRENT1
-sudo ./autogen.sh
-sudo ./configure --prefix=/usr --with-xmlrpc-c
-sudo make -j2
-sudo make install
-sudo ldconfig
+  cd /etc/miscript/source/rtorrent-$RTORRENT1
+  sudo ./autogen.sh
+  sudo ./configure --prefix=/usr --with-xmlrpc-c
+  sudo make -j2
+  sudo make install
+  sudo ldconfig
+fi
+
+if [ "$RTORRENT1" = "update" ]; then
+  git clone https://github.com/rakshasa/libtorrent.git /etc/miscript/source/libtorrent
+  cd /etc/miscript/source/libtorrent
+  sudo ./autogen.sh
+  sudo ./configure --prefix=/usr
+  sudo make -j2
+  sudo make install
+  
+  git clone https://github.com/rakshasa/rtorrent.git /etc/miscript/source/rtorrent
+  cd /etc/miscript/source/rtorrent
+  sudo ./autogen.sh
+  sudo ./configure --prefix=/usr --with-xmlrpc-c
+  sudo make -j2
+  sudo make install
+  sudo ldconfig
+fi
 
