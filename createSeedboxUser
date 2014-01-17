@@ -10,6 +10,7 @@
 #    createSeedboxUser <username> <password>
 #
 #
+
 function getString
 {
   local ISPASSWORD=$1
@@ -110,7 +111,8 @@ NEWUSER1=a
 NEWUSER2=b
 PASSWORD1=a
 PASSWORD2=b
-$QUOTA1=1
+QUOTA1=a
+QUOTA2=b
 
 if [ $1 ]; then
   NEWUSER1=$1
@@ -127,10 +129,12 @@ else
 fi
 
 if [ $3 ]; then
-  $QUOTA1=$3
+  QUOTA1=$3
+  QUOTA2=$3
 else
-  getString NO  "Space limit (in GB) for $NEWUSER1: " $QUOTA1
+  getString NO  "Space limit in GB for $NEWUSER1: " QUOTA1
 fi
+
 
 echo "$NEWUSER1" | sudo tee -a /etc/vsftpd.chroot_list &> /dev/null
 
@@ -168,13 +172,11 @@ if [ ! -f $HOMEDIR1/.profile ]; then
 fi
 
 # Set Quota
-$filesLimitPerGb = 500;
-$quota = $QUOTA1 * 1024 * 1024;
-$filesLimit = $QUOTA1 * $filesLimitPerGb;
-$quotaBurst = floor($quota * 1.1);
-$filesBurst = floor($filesLimit * 1.1);
 
-sudo setquota $NEWUSER1 $quota $quotaBurst $filesLimit $filesBurst -a;
+quota=$(( $QUOTA1 * 1024 * 1024 ))
+filesLimit=$(( $QUOTA1 * 500 ))
+
+sudo setquota $NEWUSER1 $quota $quota $filesLimit $filesLimit -a;
 
 # 3.4
 
