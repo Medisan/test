@@ -110,6 +110,7 @@ NEWUSER1=a
 NEWUSER2=b
 PASSWORD1=a
 PASSWORD2=b
+$QUOTA1 = 1
 
 if [ $1 ]; then
   NEWUSER1=$1
@@ -123,6 +124,12 @@ if [ $2 ]; then
   PASSWORD2=$2
 else
   getString YES "ruTorrent password for user $NEWUSER1: " PASSWORD1
+fi
+
+if [ $3 ]; then
+  $QUOTA1=$3
+else
+  getString YES "Space limit (in GB) for $NEWUSER1: " $QUOTA1
 fi
 
 echo "$NEWUSER1" | sudo tee -a /etc/vsftpd.chroot_list &> /dev/null
@@ -160,6 +167,15 @@ if [ ! -f $HOMEDIR1/.profile ]; then
   sudo chown $NEWUSER1: $HOMEDIR1/.bash_logout
   sudo chown $NEWUSER1: $HOMEDIR1/.profile
 fi
+
+// Set Quota
+$filesLimitPerGb = 500;
+$quota = $QUOTA1 * 1024 * 1024;
+$filesLimit = $QUOTA1 * $filesLimitPerGb;
+$quotaBurst = floor($quota * 1.1);
+$filesBurst = floor($filesLimit * 1.1);
+
+sudo setquota $NEWUSER1 $quota $quotaBurst $filesLimit $filesBurst -a;
 
 # 3.4
 
@@ -263,26 +279,6 @@ sudo perl -pi -e "s/<homedir>/$HOMEJAILED1_ESCAPED/g" /var/www/rutorrent/conf/us
 # 25.
 
 sudo cp /etc/miscript/rutorrent.conf.users.plugins.ini.template /var/www/rutorrent/conf/users/$NEWUSER1/plugins.ini
-
-# 29.1 ---- Main Trunk of AutodlIrssi ---- Not maintained by developers anymore
-
-#sudo rm -R $HOMEJAILED1/.irssi
-#sudo mkdir -p $HOMEJAILED1/.irssi/scripts/autorun
-#cd $HOMEJAILED1/.irssi/scripts
-#sudo wget --no-check-certificate -O autodl-irssi.zip https://sourceforge.net/projects/autodl-irssi/files/autodl-irssi-v1.31.zip/download
-#sudo unzip -o autodl-irssi.zip
-#sudo rm autodl-irssi.zip
-#sudo cp autodl-irssi.pl autorun/
-#sudo mkdir -p $HOMEJAILED1/.autodl
-#sudo touch $HOMEJAILED1/.autodl/autodl.cfg
-#sudo mv $HOMEJAILED1/.irssi/scripts/AutodlIrssi/trackers $HOMEJAILED1/.irssi/scripts/AutodlIrssi/trackers.original
-#sudo unzip /etc/miscript/autodl-trackers.zip -d $HOMEJAILED1/.irssi/scripts/AutodlIrssi/trackers/
-#sudo chown -R $NEWUSER1: $HOMEJAILED1/.irssi/scripts/AutodlIrssi/trackers
-
-# 29.2   ---- New Trunk of AutodlIrssi ---- by thebigmunch
-#        ---- Based on https://github.com/autodl-irssi-community/autodl-irssi
-#        ---- what/forums.php?action=viewthread&threadid=151523
-#        ---- commit log: https://github.com/autodl-irssi-community/autodl-irssi/commits/master
 
 sudo rm -R $HOMEJAILED1/.irssi
 sudo git clone https://github.com/autodl-community/autodl-irssi.git $HOMEJAILED1/.irssi/scripts/
