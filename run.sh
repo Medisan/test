@@ -158,6 +158,7 @@ perl -pi -e "s/deb cdrom/#deb cdrom/g" /etc/apt/sources.list
 perl -pi -e "s/squeeze main/squeeze  main contrib non-free/g" /etc/apt/sources.list
 perl -pi -e "s/squeeze-updates main/squeeze-updates  main contrib non-free/g" /etc/apt/sources.list
 
+apt-get --yes install sysfsutils
 echo "### Setting up HDD schedulers"
 echo "
 block/sda/queue/scheduler = cfq
