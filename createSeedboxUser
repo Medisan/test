@@ -110,7 +110,7 @@ NEWUSER1=a
 NEWUSER2=b
 PASSWORD1=a
 PASSWORD2=b
-$QUOTA1 = 1
+$QUOTA1=1
 
 if [ $1 ]; then
   NEWUSER1=$1
@@ -129,7 +129,7 @@ fi
 if [ $3 ]; then
   $QUOTA1=$3
 else
-  getString YES "Space limit (in GB) for $NEWUSER1: " $QUOTA1
+  getString NO  "Space limit (in GB) for $NEWUSER1: " $QUOTA1
 fi
 
 echo "$NEWUSER1" | sudo tee -a /etc/vsftpd.chroot_list &> /dev/null
@@ -146,7 +146,6 @@ HOMEJAILED1_ESCAPED=`echo $HOMEJAILED1 | sed s,/,\\\\\\\\\\/,g`
 IPADDRESS1=`cat /etc/miscript/hostname.info`
 SBFSCURRENTVERSION=`cat /etc/miscript/version.info`
 NEWFTPPORT1=`cat /etc/miscript/ftp.info`
-NEWSSHPORT1=`cat /etc/miscript/ssh.info`
 MAINUSER1=`cat /etc/miscript/mainuser.info`
 
 # 3.2
@@ -168,7 +167,7 @@ if [ ! -f $HOMEDIR1/.profile ]; then
   sudo chown $NEWUSER1: $HOMEDIR1/.profile
 fi
 
-// Set Quota
+# Set Quota
 $filesLimitPerGb = 500;
 $quota = $QUOTA1 * 1024 * 1024;
 $filesLimit = $QUOTA1 * $filesLimitPerGb;
