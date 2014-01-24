@@ -21,7 +21,7 @@ fi
 sudo killall rtorrent
 sudo kill -9 `sudo ps aux | grep rtorrent | grep -v grep | awk '{print $2}' | cut -d. -f 1` &> /dev/null
 
-if [ "$RTORRENT1" = "0.9.3" ] && [ "$RTORRENT1" = "0.9.2" ]; then
+if [ "$RTORRENT1" = "0.9.3" ] || [ "$RTORRENT1" = "0.9.2" ]; then
   cd /etc/miscript/source/libtorrent-$LIBTORRENT1
   sudo ./autogen.sh
   sudo ./configure --prefix=/usr
