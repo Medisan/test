@@ -1,5 +1,6 @@
 [options]
-upload-type = watchdir
-upload-watch-dir = ~/watch
+upload-watch-dir = /home/<username>/watch
+upload-type = rtorrent
+rt-dir = /home/<username>/downloads
 
 

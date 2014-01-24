@@ -303,9 +303,11 @@ sudo perl -pi -e "s/<PORT>/$IRSSIPORT1/g" /var/www/rutorrent/conf/users/$NEWUSER
 
 sudo cp /etc/miscript/home.user.autodl.autodl.cfg.template  $HOMEJAILED1/.autodl/autodl.cfg
 sudo cp /etc/miscript/home.user.autodl.autodl2.cfg.template  $HOMEJAILED1/.autodl/autodl2.cfg
-
+sudo perl -pi -e "s/<username>/$NEWUSER1/g"  $HOMEJAILED1/.autodl/autodl.cfg
 sudo perl -pi -e "s/<PASSWORD>/$IRSSIPASSWORD1/g"  $HOMEJAILED1/.autodl/autodl2.cfg
 sudo perl -pi -e "s/<PORT>/$IRSSIPORT1/g"  $HOMEJAILED1/.autodl/autodl2.cfg
+
+
 sudo perl -pi -e "s/use Digest\:\:SHA1 qw/use Digest\:\:SHA qw/g" $HOMEJAILED1/.irssi/scripts/AutodlIrssi/MatchedRelease.pm
 
 su - -s /bin/bash $NEWUSER1 $HOMEJAILED1/.tools/restart
