@@ -396,13 +396,16 @@ svn checkout http://rutorrent.googlecode.com/svn/trunk/rutorrent
 svn checkout http://rutorrent.googlecode.com/svn/trunk/plugins
 rm -r -f rutorrent/plugins
 mv plugins rutorrent/
+
+#remove mediainfo plugin
+rm -r /var/www/rutorrent/plugins/mediainfo 
+
 rm -r -f /var/www/rutorrent/js/webui.js
 cp /etc/miscript/rutorrent/js/webui.js /var/www/rutorrent/js/webui.js
 mv /etc/miscript/rutorrent/plugins/* /var/www/rutorrent/plugins
 mv /etc/miscript/rutorrent/themes/* /var/www/rutorrent/plugins/theme/themes
 rm -r -f /var/www/rutorrent/plugins/create/conf.php
 cp /etc/miscript/rutorrent/plugins/create/conf.php /var/www/rutorrent/plugins/create/
-rm -r /var/www/rutorrent/plugins/mediainfo
 cp /etc/miscript/action.php.template /var/www/rutorrent/plugins/diskspace/action.php
 
 groupadd admin
@@ -414,7 +417,6 @@ cp /etc/miscript/favicon.ico /var/www/
 cd /var/www/rutorrent/plugins
 svn co https://svn.code.sf.net/p/autodl-irssi/code/trunk/rutorrent/autodl-irssi
 cd autodl-irssi
-
 
 cd /var/www/rutorrent/plugins/
 wget https://rutorrent-logoff.googlecode.com/files/logoff-1.3.tar.gz
