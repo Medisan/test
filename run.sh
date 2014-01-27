@@ -398,7 +398,10 @@ rm -r -f rutorrent/plugins
 mv plugins rutorrent/
 
 #remove mediainfo plugin
-rm -r /var/www/rutorrent/plugins/mediainfo 
+rm -r /var/www/rutorrent/plugins/mediainfo
+
+#remove unpack plugin
+rm -r /var/www/rutorrent/plugins/unpack
 
 rm -r -f /var/www/rutorrent/js/webui.js
 cp /etc/miscript/rutorrent/js/webui.js /var/www/rutorrent/js/webui.js
