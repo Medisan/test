@@ -33,36 +33,44 @@ canBeShutdowned = yes
 
 [_getdir]
 enabled = yes
-
-[cpuload]
-enabled = user-defined
-
-[create]
-enabled = user-defined
-
+[screenshots]
+enabled = yes
+[seedingtime]
+enabled = yes
+[source]
+enabled = yes
+[tracklimits]
+enabled = yes
+[logoff]
+enabled = yes
 [datadir]
 enabled = yes
-
-[diskspace]
-enabled = user-defined
-
-[erasedata]
-enabled = user-defined
-
-[show_peers_like_wtorrent]
-enabled = user-defined
-
+[httprpc]
+enabled = yes
+canBeShutdowned = no
+[pausewebui]
+enabled = yes
 [theme]
 enabled = yes
-
-[tracklabels]
-enabled = user-defined
-
-[trafic]
-enabled = user-defined
+[_task]
+enabled = yes
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Enabled
 
+[diskspace]
+enabled = user-defined
+[erasedata]
+enabled = user-defined
+[show_peers_like_wtorrent]
+enabled = user-defined
+[tracklabels]
+enabled = user-defined
+[trafic]
+enabled = user-defined
+[cpuload]
+enabled = user-defined
+[create]
+enabled = user-defined
 [autotools]
 enabled = user-defined
 [cookies]
@@ -79,19 +87,12 @@ enabled = user-defined
 enabled = user-defined
 [geoip]
 enabled = user-defined
-[httprpc]
-enabled = yes
-canBeShutdowned = no
-[pausewebui]
-enabled = yes
 [ratio]
 enabled = user-defined
 [ratiocolor]
 enabled = user-defined
 [rss]
 enabled = user-defined
-[_task]
-enabled = yes
 [throttle]
 enabled = user-defined
 [titlebar]
@@ -103,51 +104,27 @@ enabled = user-defined
 
 [chat]
 enabled = no
-
 [chunks]
 enabled = no
-
 [feeds]
 enabled = no
-
 [history]
 enabled = no
-
 [instantsearch]
 enabled = no
-
 [ipad]
 enabled = no
-
-[logoff]
-enabled = yes
-
 [loginmgr]
 enabled = no
-
 [check_port]
 enabled = no
-
 [retrackers]
 enabled = no
-
 [rpc]
 enabled = no
-
 [rssurlrewrite]
 enabled = no
-
 [rutracker_check]
 enabled = no
-
 [scheduler]
 enabled = no
-
-[screenshots]
-enabled = yes
-
-[seedingtime]
-enabled = yes
-
-[source]
-enabled = yes
