@@ -56,7 +56,8 @@ enabled = yes
 enabled = yes
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Enabled
-
+[loginmgr]
+enabled = user-defined
 [diskspace]
 enabled = user-defined
 [erasedata]
@@ -66,10 +67,6 @@ enabled = user-defined
 [tracklabels]
 enabled = user-defined
 [trafic]
-enabled = user-defined
-[cpuload]
-enabled = user-defined
-[create]
 enabled = user-defined
 [autotools]
 enabled = user-defined
@@ -83,8 +80,6 @@ enabled = user-defined
 enabled = user-defined
 [extsearch]
 enabled = user-defined
-[filedrop]
-enabled = user-defined
 [geoip]
 enabled = user-defined
 [ratio]
@@ -97,34 +92,30 @@ enabled = user-defined
 enabled = user-defined
 [titlebar]
 enabled = user-defined
-[unpack]
+[scheduler]
 enabled = user-defined
-
+[retrackers]
+enabled = user-defined
+[history]
+enabled = user-defined
+[feeds]
+enabled = user-defined
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Disabled
-
+[filedrop]
+enabled = no
 [chat]
 enabled = no
 [chunks]
-enabled = no
-[feeds]
-enabled = no
-[history]
 enabled = no
 [instantsearch]
 enabled = no
 [ipad]
 enabled = no
-[loginmgr]
-enabled = no
 [check_port]
-enabled = no
-[retrackers]
 enabled = no
 [rpc]
 enabled = no
 [rssurlrewrite]
 enabled = no
 [rutracker_check]
-enabled = no
-[scheduler]
 enabled = no

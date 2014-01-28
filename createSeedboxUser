@@ -7,7 +7,7 @@
 #
 # you can also use it this way:
 #
-#    createSeedboxUser <username> <password>
+#    createSeedboxUser <username> <password> <space> <option>
 #
 #
 
@@ -113,6 +113,8 @@ PASSWORD1=a
 PASSWORD2=b
 QUOTA1=a
 QUOTA2=b
+OPTION1=a
+OPTION2=b
 
 if [ $1 ]; then
   NEWUSER1=$1
@@ -135,6 +137,12 @@ else
   getString NO  "Space limit in GB for $NEWUSER1: " QUOTA1
 fi
 
+if [ $4 ]; then
+  OPTION1=$3
+  OPTION2=$3
+else
+  getString NO  "IRSSI/CREATE/UNPACK options for user $NEWUSER1: " OPTION1 YES
+fi
 
 echo "$NEWUSER1" | sudo tee -a /etc/vsftpd.chroot_list &> /dev/null
 
@@ -180,18 +188,6 @@ if [ ! -f /home/aquota.user ]; then
 sudo setquota $NEWUSER1 $quota $quota $filesLimit $filesLimit -a;
 fi
 
-
-# 3.4
-
-if [ "$USERINSUDOERS1" == "YES" ]; then
-  if [ "$OS1" = "Debian" ]; then
-    sudo addgroup $NEWUSER1 sudo
-  else
-    sudo addgroup $NEWUSER1 admin
-  fi
-fi
-
-sudo service ssh restart
 
 NEWRPC1=`head -n 1 /etc/miscript/rpc.txt | tail -n 1`
 sudo perl -pi -e "s/^$NEWRPC1.*\n$//g" /etc/miscript/rpc.txt
@@ -283,6 +279,21 @@ sudo perl -pi -e "s/<homedir>/$HOMEJAILED1_ESCAPED/g" /var/www/rutorrent/conf/us
 # 25.
 
 sudo cp /etc/miscript/rutorrent.conf.users.plugins.ini.template /var/www/rutorrent/conf/users/$NEWUSER1/plugins.ini
+
+# user no create / autodl-irssi
+if [ "$OPTION1" == "NO" ]; then
+echo '
+[autodl-irssi]
+enabled = no
+[unpack]
+enabled = no
+[cpuload]
+enabled = no
+[create]
+enabled = no
+' | sudo tee -a /var/www/rutorrent/conf/users/seedbox/plugins.ini
+fi
+
 
 sudo rm -R $HOMEJAILED1/.irssi
 sudo git clone https://github.com/autodl-community/autodl-irssi.git $HOMEJAILED1/.irssi/scripts/

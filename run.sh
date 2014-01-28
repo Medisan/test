@@ -158,24 +158,6 @@ perl -pi -e "s/deb cdrom/#deb cdrom/g" /etc/apt/sources.list
 perl -pi -e "s/squeeze main/squeeze  main contrib non-free/g" /etc/apt/sources.list
 perl -pi -e "s/squeeze-updates main/squeeze-updates  main contrib non-free/g" /etc/apt/sources.list
 
-apt-get --yes install sysfsutils
-echo "### Setting up HDD schedulers"
-echo "
-block/sda/queue/scheduler = cfq
-block/sdb/queue/scheduler = cfq
-block/sdc/queue/scheduler = cfq
-block/sdd/queue/scheduler = cfq
-block/sde/queue/scheduler = cfq
-block/sdf/queue/scheduler = cfq
-
-block/sda/queue/read_ahead_kb = 512
-block/sdb/queue/read_ahead_kb = 512
-block/sdc/queue/read_ahead_kb = 512
-block/sdd/queue/read_ahead_kb = 512
-block/sde/queue/read_ahead_kb = 512
-block/sdf/queue/read_ahead_kb = 512
-" >> /etc/sysfs.conf
-
 # 7.
 # update and upgrade packages
 
