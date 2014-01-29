@@ -291,7 +291,7 @@ enabled = no
 enabled = no
 [create]
 enabled = no
-' | sudo tee -a /var/www/rutorrent/conf/users/seedbox/plugins.ini
+' | sudo tee -a /var/www/rutorrent/conf/users/$NEWUSER1/plugins.ini
 fi
 
 
