@@ -8,7 +8,7 @@ showBittorentPage = no
 showAdvancedPage = no
 
 [tabs]
-showPluginsTab = no
+showPluginsTab = yes
 
 [statusbar]
 canChangeULRate = no
